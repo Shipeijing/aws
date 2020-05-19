@@ -1,14 +1,20 @@
 import fetch from 'dva/fetch';
+import {
+  message
+} from 'antd';
 
 function parseJSON(response) {
   return response.json();
 }
 
 function checkStatus(response) {
+  if (response.status === 409) {
+    return response;
+  }
   if (response.status >= 200 && response.status < 300) {
     return response;
   }
-
+  message.error('Request error, please try again!')
   const error = new Error(response.statusText);
   error.response = response;
   throw error;
@@ -25,6 +31,10 @@ export default function request(url, options) {
   return fetch(url, options)
     .then(checkStatus)
     .then(parseJSON)
-    .then(data => ({ data }))
-    .catch(err => ({ err }));
+    .then(data => ({
+      data
+    }))
+    .catch(err => ({
+      err
+    }));
 }
