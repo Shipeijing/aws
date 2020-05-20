@@ -1,0 +1,18 @@
+.bg {
+  background-image: url(../../assets/loginbg.png);
+  height: 100vh;
+  width: 100vw;
+}
+.bg .formBox {
+  position: relative;
+  top: 200px;
+}
+.bg .formBox .formWrapper {
+  background-color: #ffffff;
+  min-height: 400px;
+  padding: 0 30px;
+}
+.bg .logo {
+  padding: 10px 10px 0px;
+  text-align: center;
+}
